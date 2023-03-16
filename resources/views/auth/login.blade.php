@@ -1,48 +1,84 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
-
-        <x-validation-errors class="mb-4" />
-
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+@include('layouts.header')
+    <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+        <div class="row py-5">
+            <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-4 text-white animated zoomIn">تسجيل الدخول</h1>
+                <a href="{{ route('home') }}" class="h5 text-white">الصفحة الرئيسية</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <span  class="h5 text-white">تسجيل الدخول</span>
             </div>
-        @endif
+        </div>
+    </div>
+    </div>
+    <!-- Navbar End -->
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
 
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+    <!-- Full Screen Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <x-authentication-card>
+            <x-slot name="logo">
+            </x-slot>
+    
+            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center justify-content-center">
+                    <div class="input-group" style="max-width: 600px;">
+                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
             </div>
+        </x-authentication-card>
+    </div>
+    </div>
+    <!-- Full Screen Search End -->
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+    <!-- Contact Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+            <h5 class="fw-bold text-primary text-uppercase"> تسجيل الدخول</h5>
+        </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
+        <div class="row g-5">
+            <div class="col-lg-8 wow slideInUp m-auto" data-wow-delay="0.3s">
+                @if (session('status'))
+                    <div class="mb-4 font-medium text-sm text-green-600">
+                        {{ session('status') }}
+                    </div>
                 @endif
+        
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
 
-                <x-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-button>
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <x-label for="email" value="{{ __('البريد الإلكتروني ') }}" />
+                            <x-input  id="email" class="block mt-1 w-full form-control border-0 bg-light px-4" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                        </div>
+                        <div class="col-12">
+                            <x-label for="password" value="{{ __('كلمة المرور ') }}" />
+                            <x-input id="password" class="block mt-1 w-full form-control border-0 bg-light px-4" type="password" name="password" required autocomplete="current-password" />
+
+                        </div>
+                    
+                        <div class="col-12">
+                            <x-button class="btn btn-primary w-100 py-3" type="submit">
+                                {{ __('تسجيل الدخول  ') }}
+                            </x-button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+      
+        </div>
+    </div>
+</div>
+    <!-- Contact End -->
+
+
+@include('layouts.footer')
