@@ -16,6 +16,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PublicController::class, 'home'])->name('home');
 
+//admin
+Route::middleware(['verified','authadmin'])->group(function(){
+
+});
+
+//admin
+Route::middleware(['verified','authuser'])->group(function(){
+    
+});
+
+//medical personnel
+Route::middleware(['verified','authmedicalpersonnel'])->group(function(){
+    
+});
+
 
 Route::middleware([
     'auth:sanctum',
