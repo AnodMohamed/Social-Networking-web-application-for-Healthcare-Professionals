@@ -1,7 +1,29 @@
-<x-app-layout>
+@push('style')
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+@endpush
+
+@include('layouts.header')
+
+
+<div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+    <div class="row py-5">
+        <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+            <h1 class="display-4 text-white animated zoomIn">تسجيل الدخول</h1>
+            <a href="{{ route('home') }}" class="h5 text-white">الصفحة الرئيسية</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <span  class="h5 text-white">تسجيل الدخول</span>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Navbar End -->
+
+</div>
+<!-- Contact End -->
+
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
         </h2>
     </x-slot>
 
@@ -21,25 +43,8 @@
                 <x-section-border />
             @endif
 
-            @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.two-factor-authentication-form')
-                </div>
-
-                <x-section-border />
-            @endif
-
-            <div class="mt-10 sm:mt-0">
-                @livewire('profile.logout-other-browser-sessions-form')
-            </div>
-
-            @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
-                <x-section-border />
-
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.delete-user-form')
-                </div>
-            @endif
         </div>
     </div>
-</x-app-layout>
+
+@include('layouts.footer')
+

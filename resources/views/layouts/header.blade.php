@@ -29,6 +29,11 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    @stack('style')
+
+    @livewireStyles
+
 </head>
 
 <body>
@@ -77,13 +82,7 @@
                     <a href="index.html" class="nav-item nav-link active">Home</a>
                     <a href="about.html" class="nav-item nav-link">About</a>
                     <a href="service.html" class="nav-item nav-link">Services</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Blog</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                            <a href="detail.html" class="dropdown-item">Blog Detail</a>
-                        </div>
-                    </div>
+
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
@@ -98,6 +97,15 @@
                 </div>
                 @if (Auth::check())
                     {{-- the user is logged in --}}
+                    <div class="nav-item dropdown px-4 ms-3">
+                        <a href="#" class="nav-link dropdown-toggle m-auto" data-bs-toggle="dropdown">{{ Auth::user()->name}}</a>
+                        <ul>
+                        <div class="dropdown-menu m-auto ">
+                            <a href="{{ route('profile.show') }}" class="dropdown-item">تعديل الملف الشخصي</a>
+
+                            <a href="detail.html" class="dropdown-item">Blog Detail</a>
+                        </div>
+                    </div>
 
                 @else
                     {{-- the user is not logged in --}}

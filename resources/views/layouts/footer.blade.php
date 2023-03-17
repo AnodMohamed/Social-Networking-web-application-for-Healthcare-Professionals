@@ -105,6 +105,11 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
+
+
+    @stack('javascript')
+
+    @livewireScripts
 </body>
 
 </html>
