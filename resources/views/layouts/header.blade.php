@@ -102,9 +102,8 @@
                 @else
                     {{-- the user is not logged in --}}
                     <a href="{{ route('login')}}" class="btn btn-primary py-2 px-4 ms-3"> تسجيل الدخول </a>
-                    <a href="{{ route('register')}}" data-bs-toggle="modal" data-bs-target="#searchModal">انشاء حساب</a>
+                    <a href="{{ route('register')}}" class="btn btn-primary py-2 px-4 ms-3">انشاء حساب</a>
 
                 @endif
-                <a type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"></a>
             </div>
         </nav>

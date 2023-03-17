@@ -46,6 +46,10 @@
 
         <div class="row g-5">
             <div class="col-lg-8 wow slideInUp m-auto" data-wow-delay="0.3s">
+                <div style="color:red">
+                    <x-validation-errors class="mb-4" />
+        
+                </div>
                 @if (session('status'))
                     <div class="mb-4 font-medium text-sm text-green-600">
                         {{ session('status') }}
