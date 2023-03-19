@@ -3,13 +3,26 @@
 namespace App\Http\Controllers\public;
 
 use App\Http\Controllers\Controller;
+use App\Models\medicalPersonProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PublicController extends Controller
 {
     //
 
     public function home(){
+        if(Auth::check()){
+            if(Auth::user()->type == "عامل في المجال الطبي"){
+                $check =medicalPersonProfile::where('user_id',Auth::user()->id)->get();
+                if (count($check) < 1) {
+                    $medical= new  medicalPersonProfile();
+                    $medical->user_id = Auth::user()->id;
+                    $medical->save();
+                }
+            }
+        }
+
         return view('public.home');
     }
 }

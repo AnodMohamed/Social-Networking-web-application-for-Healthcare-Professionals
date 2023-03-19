@@ -17,7 +17,7 @@ class AuthMedicalPersonnel
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->type == "العامل في المجال الطبي")
+        if(Auth::user()->type == "عامل في المجال الطبي")
         {
             return $next($request);
         }else{

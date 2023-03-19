@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\medical\editProfileController;
 use App\Http\Controllers\public\PublicController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,12 +24,14 @@ Route::middleware(['verified','authadmin'])->group(function(){
 
 //admin
 Route::middleware(['verified','authuser'])->group(function(){
-    
+
 });
 
 //medical personnel
 Route::middleware(['verified','authmedicalpersonnel'])->group(function(){
-    
+    Route::get('/medical/edit', [editProfileController::class, 'edit'])->name('medical.edit');
+    Route::post('/medical/update', [editProfileController::class, 'update'])->name('medical.update');
+
 });
 
 

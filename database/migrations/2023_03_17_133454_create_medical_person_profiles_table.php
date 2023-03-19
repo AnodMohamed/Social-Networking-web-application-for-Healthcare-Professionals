@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('Identification_card')->nullable();
             $table->string('license')->nullable();
             $table->string('certificate')->nullable();
+            $table->string('status')->default('فارغ');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

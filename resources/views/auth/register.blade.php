@@ -83,7 +83,7 @@
                         <x-label for="type" value="{{ __(' تسجيل ك ') }}" />
                         <select id="type" class="block mt-1 w-full form-control border-0 bg-light px-4" name="type" :value="old('type')" required>
                             <option value=""> اختار من الآتي</option>
-                            <option value="العامل في المجال الطبي">عامل في المجال الطبي</option>
+                            <option value="عامل في المجال الطبي">عامل في المجال الطبي</option>
                             <option value="مستخدم">مستخدم</option>
                         </select>
                     </div>
