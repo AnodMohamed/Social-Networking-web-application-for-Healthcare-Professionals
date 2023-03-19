@@ -30,6 +30,10 @@
     <!-- Template Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+ 
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
     @stack('style')
@@ -104,7 +108,12 @@
                         <ul>
                         <div class="dropdown-menu m-auto ">
                             <a href="{{ route('profile.show') }}" class="dropdown-item">تعديل الملف الشخصي</a>
+                            @auth
+                                @if (Auth::user()->type  == 'ادمن')
+                                    <a href="{{ route('admin.medical.index') }}" class="dropdown-item">  الشخصي</a>
 
+                                @endif
+                            @endauth
                             <a href="detail.html" class="dropdown-item">Blog Detail</a>
                         </div>
                     </div>

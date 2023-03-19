@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminManageMedicalProfileController;
 use App\Http\Controllers\medical\editProfileController;
 use App\Http\Controllers\public\PublicController;
 use Illuminate\Support\Facades\Route;
@@ -19,10 +20,11 @@ Route::get('/', [PublicController::class, 'home'])->name('home');
 
 //admin
 Route::middleware(['verified','authadmin'])->group(function(){
+    Route::get('admin/medical/index', [AdminManageMedicalProfileController::class, 'index'])->name('admin.medical.index');
 
 });
 
-//admin
+//user
 Route::middleware(['verified','authuser'])->group(function(){
 
 });
