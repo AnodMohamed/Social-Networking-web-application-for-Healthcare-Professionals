@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminManageMedicalProfileController;
 use App\Http\Controllers\medical\editProfileController;
+use App\Http\Controllers\medical\MedicalArticleController;
 use App\Http\Controllers\public\PublicController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,8 @@ Route::get('/public/medical/showprofile/{user_id:id}', [PublicController::class,
 
 //admin
 Route::middleware(['verified','authadmin'])->group(function(){
+
+    //medical profiles
     Route::get('admin/medical/index', [AdminManageMedicalProfileController::class, 'index'])->name('admin.medical.index');
     Route::get('admin/medical/accept/{user_id:id}', [AdminManageMedicalProfileController::class, 'accept'])->name('admin.medical.accept');
     Route::get('admin/medical/reject/{user_id:id}', [AdminManageMedicalProfileController::class, 'reject'])->name('admin.medical.reject');
@@ -37,8 +40,14 @@ Route::middleware(['verified','authuser'])->group(function(){
 
 //medical personnel
 Route::middleware(['verified','authmedicalpersonnel'])->group(function(){
+
+    //medical profiles
     Route::get('/medical/edit', [editProfileController::class, 'edit'])->name('medical.edit');
     Route::post('/medical/update', [editProfileController::class, 'update'])->name('medical.update');
+
+    //articles
+    Route::get('/medical/article/create', [MedicalArticleController::class, 'create'])->name('medical.article.create');
+    Route::post('/medical/article/store', [MedicalArticleController::class, 'store'])->name('medical.article.store');
 
 });
 
