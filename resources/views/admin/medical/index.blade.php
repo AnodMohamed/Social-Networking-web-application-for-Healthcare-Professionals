@@ -66,12 +66,18 @@
                             @foreach($profiles as $profile)
                                 <tr>
                                     <td>{{ $profile->name }}</td>
-                                    <td>
-                                        <a href="" class="btn btn-info text-white"> <i class="bi bi-eye"></i> </a>
-                                        <a href="" class="btn btn-success text-white"> <i class="bi bi-check2-square"></i> </a>
-                                        <a href="" class="btn btn-warning text-white"> <i class="bi bi-clipboard-x"></i> </a>
-                                        <a href="" class="btn btn-danger  text-white "> <i class="bi bi-slash-circle"></i> </a>
-
+                                    <td class="float-start">
+                                        @if ( $profile->name != 'فارغ')
+                                            <a href="{{ route('public.medical.showprofile',['user_id'=>$profile->id ]) }}" 
+                                               class="btn btn-info text-white"
+                                               title="عرض">
+                                               <i class="bi bi-eye"></i>
+                                             </a>
+                                            <a href="" class="btn btn-success text-white"> <i class="bi bi-check2-square"></i> </a>
+                                            <a href="" class="btn btn-warning text-white"> <i class="bi bi-clipboard-x"></i> </a>
+                                            <a href="" class="btn btn-danger  text-white "> <i class="bi bi-slash-circle"></i> </a>
+                                        @endif
+                                        
                                         
                                         
                                         

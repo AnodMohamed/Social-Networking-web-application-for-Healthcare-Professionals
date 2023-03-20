@@ -4,6 +4,7 @@ namespace App\Http\Controllers\public;
 
 use App\Http\Controllers\Controller;
 use App\Models\medicalPersonProfile;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,4 +26,12 @@ class PublicController extends Controller
 
         return view('public.home');
     }
+
+    public function showprofile($user_id){
+        $user = User::where('id', $user_id)->first();
+        $medical_profile = medicalPersonProfile::where('user_id', $user_id)->first();
+
+        return view('public.medical.showprofile')->with(compact('user','medical_profile'));
+    }
+    
 }
