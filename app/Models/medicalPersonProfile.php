@@ -22,20 +22,20 @@ class medicalPersonProfile extends Model
     ];
 
     
-    public static function checkuser()
-    {
-        if(Auth::user()->type == "عامل في المجال الطبي"){
-            $medical = medicalPersonProfile::find(Auth::user()->id);
-            return $medical;
-            // if(count($medical) < 1){
-            //     $data = [
-            //         'user_id' => Auth::user()->id,
-            //     ];
-            //     Self::create($data);
+    // public static function checkuser()
+    // {
+    //     if(Auth::user()->type == "عامل في المجال الطبي"){
+    //         $medical = medicalPersonProfile::find(Auth::user()->id);
+    //         return $medical;
+    //         // if(count($medical) < 1){
+    //         //     $data = [
+    //         //         'user_id' => Auth::user()->id,
+    //         //     ];
+    //         //     Self::create($data);
 
-            // }
-            // return Self::first();
+    //         // }
+    //         // return Self::first();
 
-        }
-    }
+    //     }
+    // }
 }

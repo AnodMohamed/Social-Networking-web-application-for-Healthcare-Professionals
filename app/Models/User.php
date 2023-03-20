@@ -60,5 +60,8 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-
+    public function medical()
+    {
+        return $this->hasMany(medicalPersonProfile::class);
+    }
 }

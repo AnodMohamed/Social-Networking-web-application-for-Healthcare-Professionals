@@ -22,7 +22,12 @@ Route::get('/public/medical/showprofile/{user_id:id}', [PublicController::class,
 //admin
 Route::middleware(['verified','authadmin'])->group(function(){
     Route::get('admin/medical/index', [AdminManageMedicalProfileController::class, 'index'])->name('admin.medical.index');
+    Route::get('admin/medical/accept/{user_id:id}', [AdminManageMedicalProfileController::class, 'accept'])->name('admin.medical.accept');
+    Route::get('admin/medical/reject/{user_id:id}', [AdminManageMedicalProfileController::class, 'reject'])->name('admin.medical.reject');
+    Route::get('admin/medical/stop/{user_id:id}', [AdminManageMedicalProfileController::class, 'stop'])->name('admin.medical.stop');
+    Route::get('admin/medical/unblock/{user_id:id}', [AdminManageMedicalProfileController::class, 'unblock'])->name('admin.medical.unblock');
 
+    
 });
 
 //user

@@ -50,7 +50,7 @@
             <div class="col-lg-8 wow slideInUp m-auto" data-wow-delay="0.3s">
 
                 @if(Session::has('message'))
-                    <div class="alert alert-success">{{Session::get('message')}}</div>
+                    <div class="alert alert-success py-1 my-3">{{Session::get('message')}}</div>
                 @endif
             
                 @if(isset($profiles))
@@ -58,6 +58,7 @@
                     <table id="myTable" class="display">
                         <thead>
                             <tr>
+                                <th>الصور</th>
                                 <th>اسم المستخدم</th>
                                 <th>التحكم</th>
                             </tr>
@@ -65,23 +66,77 @@
                         <tbody>
                             @foreach($profiles as $profile)
                                 <tr>
+                                    <td>
+                                        @if ($profile->profile_photo_path == Null)
+                                            <img src="{{ asset('defult.jpg') }}" style="width: 70px; height:70px;">
+                                        @else
+                                            <img src="{{asset('storage')}}/{{$profile->profile_photo_path}}"  style="width: 70px; height:70px;">
+                                        @endif 
+                                    </td>
                                     <td>{{ $profile->name }}</td>
                                     <td class="float-start">
-                                        @if ( $profile->name != 'فارغ')
+                                        @php
+                                           $medical = DB::table('medical_person_profiles')->where('user_id',$profile->id)->first();
+                                        @endphp
+                                        @if ( $medical->status != 'فارغ')
+
+                                            {{-- عرض--}}
                                             <a href="{{ route('public.medical.showprofile',['user_id'=>$profile->id ]) }}" 
                                                class="btn btn-info text-white"
                                                title="عرض">
                                                <i class="bi bi-eye"></i>
-                                             </a>
-                                            <a href="" class="btn btn-success text-white"> <i class="bi bi-check2-square"></i> </a>
-                                            <a href="" class="btn btn-warning text-white"> <i class="bi bi-clipboard-x"></i> </a>
-                                            <a href="" class="btn btn-danger  text-white "> <i class="bi bi-slash-circle"></i> </a>
+                                            </a>
+
+                                            @if ( $medical->status == 'قيد المراجعة')
+
+                                                {{-- قبول--}}
+                                                <a href="{{ route('admin.medical.accept',['user_id'=>$profile->id ]) }}" 
+                                                    class="btn btn-success text-white"
+                                                    title="قبول">
+                                                    <i class="bi bi-check2-square"></i>
+                                                </a>
+
+                                                {{-- رفض--}}
+                                                <a href="{{ route('admin.medical.reject',['user_id'=>$profile->id ]) }}" 
+                                                    class="btn btn-warning text-white"
+                                                    title="رفض">
+                                                    <i class="bi bi-clipboard-x"></i>
+                                                </a>
+                                            @endif
+
+                                            @if ($medical->status == 'محظور')
+                                                {{-- الغاء الحظر--}}
+                                                <a href="{{ route('admin.medical.unblock',['user_id'=>$profile->id ]) }}" 
+                                                    class="btn btn-secondary text-white"
+                                                    title="الغاء الحظر">
+                                                    <i class="bi bi-check2-circle"></i>
+                                                </a>
+                                            @else
+                                                {{-- حظر--}}
+                                                <a href="{{ route('admin.medical.stop',['user_id'=>$profile->id ]) }}" 
+                                                    class="btn btn-danger text-white"
+                                                    title="حظر">
+                                                    <i class="bi bi-slash-circle"></i>
+                                                </a>
+
+                                            @endif
+                                            
                                         @endif
+
+                                        {{-- @if ( $profile->name != 'فارغ')
+                                            <a href="{{ route('public.medical.showprofile',['user_id'=>$profile->id ]) }}" 
+                                               class="btn btn-success text-white"
+                                               title="عرض">
+                                               <i class="bi bi-check2-square"></i>
+                                            </a>
+                                            
+                                            
+                                        @endif --}}
                                         
                                         
                                         
                                         
-                                                                                {{-- <i class="bi bi-trash3"></i> --}}
+                                        {{-- <i class="bi bi-trash3"></i> --}}
                                     </td>
                                 </tr>
                             @endforeach
