@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Admin\AdminManageMedicalProfileController;
 use App\Http\Controllers\medical\editProfileController;
 use App\Http\Controllers\medical\MedicalArticleController;
@@ -31,7 +32,10 @@ Route::middleware(['verified','authadmin'])->group(function(){
     Route::get('admin/medical/stop/{user_id:id}', [AdminManageMedicalProfileController::class, 'stop'])->name('admin.medical.stop');
     Route::get('admin/medical/unblock/{user_id:id}', [AdminManageMedicalProfileController::class, 'unblock'])->name('admin.medical.unblock');
 
-    
+    //articles
+    Route::get('admin/article/index', [AdminArticleController::class, 'index'])->name('admin.article.index');
+    Route::get('/admin/article/delete/{article_id:id}', [AdminArticleController::class, 'destroy'])->name('admin.article.delete');
+
 });
 
 //user

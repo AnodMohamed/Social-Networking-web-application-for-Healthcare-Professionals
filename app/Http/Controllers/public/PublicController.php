@@ -31,7 +31,6 @@ class PublicController extends Controller
     public function showprofile($user_id){
         $user = User::where('id', $user_id)->first();
         $medical_profile = medicalPersonProfile::where('user_id', $user_id)->first();
-
         return view('public.medical.showprofile')->with(compact('user','medical_profile'));
     }
     

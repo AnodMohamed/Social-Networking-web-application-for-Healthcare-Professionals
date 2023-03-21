@@ -91,31 +91,35 @@
 
                     @if (Auth::check())
                         {{-- the user is logged in --}}
-                        <div class="nav-item dropdown px-4 ms-3">
-                            <a href="#" class="nav-link dropdown-toggle m-auto" data-bs-toggle="dropdown">{{ Auth::user()->name}}</a>
+                        <div class="nav-item dropdown px-4 ms-3 ">
+                            <a href="#" class="nav-link dropdown-toggle m-auto " data-bs-toggle="dropdown">{{ Auth::user()->name}}</a>
                             <ul>
-                            <div class="dropdown-menu m-auto ">
-                                <a href="{{ route('profile.show') }}" class="dropdown-item">تعديل الملف الشخصي</a>
-                                @auth
-                                    @if (Auth::user()->type  == 'ادمن')
-                                        <a href="{{ route('admin.medical.index') }}" class="dropdown-item">  الشخصي</a>
-                                    @elseif (Auth::user()->type  == 'عامل في المجال الطبي')    
-                                        <a href="{{ route('medical.article.index') }}" class="dropdown-item">  مقلاتي </a>
+                            <div class="dropdown-menu m-auto  ">
+                                <a href="{{ route('profile.show') }}" class="dropdown-item text-end">تعديل الملف الشخصي</a>
+                                @if (Auth::user()->type  == 'ادمن')
+                                    <a href="{{ route('admin.medical.index') }}" class="dropdown-item text-end">  التحكم في العاملين في المجال الطبي</a>
+                                    <a href="{{ route('admin.article.index') }}" class="dropdown-item text-end">  التحكم في المقالات</a>
 
-                                    @endif
-
-                                @endauth
-                                <a href="detail.html" class="dropdown-item">Blog Detail</a>
+                                @elseif (Auth::user()->type  == 'عامل في المجال الطبي')    
+                                    <a href="{{ route('medical.article.index') }}" class="dropdown-item text-end">  مقلاتي </a>
+                                @endif
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a class="dropdown-item text-end" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                                        {{ __('تسجيل الخروج ') }}
+                                        </a>
+                                </form>
                             </div>
-                        </div>
-
-                    @else
-                        {{-- the user is not logged in --}}
-                        <a href="{{ route('login')}}" class="btn btn-primary py-2 px-4 ms-3"> تسجيل الدخول </a>
-                        <a href="{{ route('register')}}" class="btn btn-primary py-2 px-4 ms-3">انشاء حساب</a>
-
+                        </div>                   
                     @endif
                 </div>
-               
+              @if (Auth::check() == 0)
+                <a href="{{ route('login')}}" class="btn btn-primary py-2 px-4 ms-3"> تسجيل الدخول </a>
+                <a href="{{ route('register')}}" class="btn btn-primary py-2 px-4 ms-3">انشاء حساب</a>
+
+              @endif
+              
             </div>
         </nav>
