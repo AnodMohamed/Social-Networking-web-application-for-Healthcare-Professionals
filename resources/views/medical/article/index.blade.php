@@ -77,12 +77,21 @@
                                     </td>
                                     <td>{{ $article->title }}</td>
                                     <td class="float-start">
+                                        {{-- عرض--}}
+                                        <a href="{{ route('public.article.showarticle',['article_id'=>$article->id ]) }}" 
+                                            class="btn btn-info text-white"
+                                            title="عرض">
+                                            <i class="bi bi-eye"></i>
+                                         </a>
+
                                         {{-- تعديل--}}
-                                        <a href="{{ route('admin.medical.edit',['article_id'=>$article->id ]) }}" 
+                                        <a href="{{ route('medical.article.edit',['article_id'=>$article->id ]) }}" 
                                             class="btn btn-success text-white"
                                             title="تعديل">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
+
+                                        
 
                                         {{-- حذف--}}
                                         {{-- <a href="{{ route('admin.medical.reject',['user_id'=>$profile->id ]) }}" 

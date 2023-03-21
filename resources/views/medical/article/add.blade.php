@@ -4,7 +4,8 @@
             <div class="col-12 pt-lg-5 mt-lg-5 text-center">
                 <h1 class="display-4 text-white animated zoomIn"> إضافة مقال</h1>
                 <a href="{{ route('home') }}" class="h5 text-white">الصفحة الرئيسية</a>
-                <a href="{{ route('home') }}" class="h5 text-white"> مقالاتي</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="{{ route('medical.article.index') }}" class="h5 text-white"> التحكم في مقالاتي</a>
                 <i class="far fa-circle text-white px-2"></i>
                 <span  class="h5 text-white">إضافة مقال</span>
             </div>

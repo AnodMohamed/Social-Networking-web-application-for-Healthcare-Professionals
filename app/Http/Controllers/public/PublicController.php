@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\public;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\medicalPersonProfile;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -34,4 +35,9 @@ class PublicController extends Controller
         return view('public.medical.showprofile')->with(compact('user','medical_profile'));
     }
     
+    public function showarticle($article_id){
+        $article =Article::find($article_id);
+        return view('public.article.showarticle')->with(compact('article'));
+
+    }
 }

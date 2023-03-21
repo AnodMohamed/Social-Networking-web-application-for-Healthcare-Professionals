@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PublicController::class, 'home'])->name('home');
 Route::get('/public/medical/showprofile/{user_id:id}', [PublicController::class, 'showprofile'])->name('public.medical.showprofile');
+Route::get('/public/article/showarticle/{article_id:id}', [PublicController::class, 'showarticle'])->name('public.article.showarticle');
 
 //admin
 Route::middleware(['verified','authadmin'])->group(function(){
@@ -48,8 +49,9 @@ Route::middleware(['verified','authmedicalpersonnel'])->group(function(){
     //articles
     Route::get('/medical/article/create', [MedicalArticleController::class, 'create'])->name('medical.article.create');
     Route::post('/medical/article/store', [MedicalArticleController::class, 'store'])->name('medical.article.store');
-    Route::get('/medical/article/store', [MedicalArticleController::class, 'index'])->name('medical.article.index');
-    Route::get('/medical/article/edit/{article_id:id}', [MedicalArticleController::class, 'edit'])->name('admin.medical.edit');
+    Route::get('/medical/article/index', [MedicalArticleController::class, 'index'])->name('medical.article.index');
+    Route::get('/medical/article/edit/{article_id:id}', [MedicalArticleController::class, 'edit'])->name('medical.article.edit');
+    Route::post('/medical/article/update/{article_id:id}', [MedicalArticleController::class, 'update'])->name('medical.article.update');
 
 });
 
