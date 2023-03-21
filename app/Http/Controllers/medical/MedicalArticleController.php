@@ -14,7 +14,9 @@ class MedicalArticleController extends Controller
 {
     //
     public function index(){
-        return view('medical.article.index');
+        $articles = Article::where('user_id', Auth::user()->id)->get();
+        return view('medical.article.index')->with(compact('articles'));
+
     } 
 
     public function create(){
@@ -57,5 +59,10 @@ class MedicalArticleController extends Controller
           return redirect()->back();
 
     } 
+
+    public function edit($article_id){
+        $article =Article::where('user_id',$article_id)->first();
+        return view('medical.article.edit')->with(compact('article'));
+    }
 
 }

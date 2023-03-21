@@ -2,10 +2,10 @@
 <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
         <div class="row py-5">
             <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-                <h1 class="display-4 text-white animated zoomIn"> التحكم في العاملين في المجال الطبي</h1>
+                <h1 class="display-4 text-white animated zoomIn"> التحكم في مقالاتي</h1>
                 <a href="{{ route('home') }}" class="h5 text-white">الصفحة الرئيسية</a>
                 <i class="far fa-circle text-white px-2"></i>
-                <span  class="h5 text-white"> التحكم في العاملين في المجال الطبي</span>
+                <span  class="h5 text-white"> التحكم في مقالاتي</span>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-            <h5 class="fw-bold text-primary text-uppercase"> التحكم في العاملين في المجال الطبي </h5>
+            <h5 class="fw-bold text-primary text-uppercase">  التحكم في مقالاتي</h5>
             <h6 class="mb-0">   </h6>
         </div>
 
@@ -52,90 +52,45 @@
                 @if(Session::has('message'))
                     <div class="alert alert-success py-1 my-3">{{Session::get('message')}}</div>
                 @endif
-            
-                @if(isset($profiles))
+               {{-- عرض--}}
+               <a href="{{ route('medical.article.create') }}" 
+                    class="btn btn-info text-white my-3"
+                    title="اضافة">
+                    <i class="bi bi-plus"></i>
+                    إضافة
+                 </a>
+                @if(isset($articles))
 
                     <table id="myTable" class="display">
                         <thead>
                             <tr>
                                 <th>الصور</th>
-                                <th>اسم المستخدم</th>
+                                <th>العنوان</th>
                                 <th>التحكم</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($profiles as $profile)
+                            @foreach($articles as $article)
                                 <tr>
                                     <td>
-                                        @if ($profile->profile_photo_path == Null)
-                                            <img src="{{ asset('defult.jpg') }}" style="width: 70px; height:70px;">
-                                        @else
-                                            <img src="{{asset('storage')}}/{{$profile->profile_photo_path}}"  style="width: 70px; height:70px;">
-                                        @endif 
+                                        <img src="{{asset('storage/images')}}/{{$article->image}}"  style="width: 70px; height:70px;">
                                     </td>
-                                    <td>{{ $profile->name }}</td>
+                                    <td>{{ $article->title }}</td>
                                     <td class="float-start">
-                                        @php
-                                           $medical = DB::table('medical_person_profiles')->where('user_id',$profile->id)->first();
-                                        @endphp
-                                        @if ( $medical->status != 'فارغ')
+                                        {{-- تعديل--}}
+                                        <a href="{{ route('admin.medical.edit',['article_id'=>$article->id ]) }}" 
+                                            class="btn btn-success text-white"
+                                            title="تعديل">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
 
-                                            {{-- عرض--}}
-                                            <a href="{{ route('public.medical.showprofile',['user_id'=>$profile->id ]) }}" 
-                                               class="btn btn-info text-white"
-                                               title="عرض">
-                                               <i class="bi bi-eye"></i>
-                                            </a>
+                                        {{-- حذف--}}
+                                        {{-- <a href="{{ route('admin.medical.reject',['user_id'=>$profile->id ]) }}" 
+                                            class="btn btn-danger text-white"
+                                            title="حذف">
+                                            <i class="bi bi-trash3"></i>
+                                        </a> --}}
 
-                                            @if ( $medical->status == 'قيد المراجعة')
-
-                                                {{-- قبول--}}
-                                                <a href="{{ route('admin.medical.accept',['user_id'=>$profile->id ]) }}" 
-                                                    class="btn btn-success text-white"
-                                                    title="قبول">
-                                                    <i class="bi bi-check2-square"></i>
-                                                </a>
-
-                                                {{-- رفض--}}
-                                                <a href="{{ route('admin.medical.reject',['user_id'=>$profile->id ]) }}" 
-                                                    class="btn btn-warning text-white"
-                                                    title="رفض">
-                                                    <i class="bi bi-clipboard-x"></i>
-                                                </a>
-                                            @endif
-
-                                            @if ($medical->status == 'محظور')
-                                                {{-- الغاء الحظر--}}
-                                                <a href="{{ route('admin.medical.unblock',['user_id'=>$profile->id ]) }}" 
-                                                    class="btn btn-secondary text-white"
-                                                    title="الغاء الحظر">
-                                                    <i class="bi bi-check2-circle"></i>
-                                                </a>
-                                            @else
-                                                {{-- حظر--}}
-                                                <a href="{{ route('admin.medical.stop',['user_id'=>$profile->id ]) }}" 
-                                                    class="btn btn-danger text-white"
-                                                    title="حظر">
-                                                    <i class="bi bi-slash-circle"></i>
-                                                </a>
-
-                                            @endif
-                                            
-                                        @endif
-
-                                        {{-- @if ( $profile->name != 'فارغ')
-                                            <a href="{{ route('public.medical.showprofile',['user_id'=>$profile->id ]) }}" 
-                                               class="btn btn-success text-white"
-                                               title="عرض">
-                                               <i class="bi bi-check2-square"></i>
-                                            </a>
-                                            
-                                            
-                                        @endif --}}
-                                        
-                                        
-                                        
-                                        
                                         {{-- <i class="bi bi-trash3"></i> --}}
                                     </td>
                                 </tr>

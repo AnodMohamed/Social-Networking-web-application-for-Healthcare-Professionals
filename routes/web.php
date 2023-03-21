@@ -48,6 +48,8 @@ Route::middleware(['verified','authmedicalpersonnel'])->group(function(){
     //articles
     Route::get('/medical/article/create', [MedicalArticleController::class, 'create'])->name('medical.article.create');
     Route::post('/medical/article/store', [MedicalArticleController::class, 'store'])->name('medical.article.store');
+    Route::get('/medical/article/store', [MedicalArticleController::class, 'index'])->name('medical.article.index');
+    Route::get('/medical/article/edit/{article_id:id}', [MedicalArticleController::class, 'edit'])->name('admin.medical.edit');
 
 });
 

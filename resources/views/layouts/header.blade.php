@@ -111,8 +111,11 @@
                             @auth
                                 @if (Auth::user()->type  == 'ادمن')
                                     <a href="{{ route('admin.medical.index') }}" class="dropdown-item">  الشخصي</a>
+                                @elseif (Auth::user()->type  == 'عامل في المجال الطبي')    
+                                    <a href="{{ route('medical.article.index') }}" class="dropdown-item">  مقلاتي </a>
 
                                 @endif
+
                             @endauth
                             <a href="detail.html" class="dropdown-item">Blog Detail</a>
                         </div>
