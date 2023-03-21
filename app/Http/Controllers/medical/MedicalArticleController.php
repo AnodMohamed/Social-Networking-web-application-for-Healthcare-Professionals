@@ -99,5 +99,14 @@ class MedicalArticleController extends Controller
         return redirect()->back();
     }
 
+    public function destroy($article_id){
+        $article = Article::find($article_id); // Find the user with ID 1
+        $article->delete(); // Delete the user
+        
+         //success message
+         Session::flash('message', 'تم حذف المقال بنجاح');
 
+         //redirect
+         return redirect()->back();
+    }
 }

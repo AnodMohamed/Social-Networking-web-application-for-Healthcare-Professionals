@@ -89,43 +89,33 @@
                     <a href="about.html" class="nav-item nav-link">About</a>
                     <a href="service.html" class="nav-item nav-link">Services</a>
 
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                            <a href="feature.html" class="dropdown-item">Our features</a>
-                            <a href="team.html" class="dropdown-item">Team Members</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="quote.html" class="dropdown-item">Free Quote</a>
+                    @if (Auth::check())
+                        {{-- the user is logged in --}}
+                        <div class="nav-item dropdown px-4 ms-3">
+                            <a href="#" class="nav-link dropdown-toggle m-auto" data-bs-toggle="dropdown">{{ Auth::user()->name}}</a>
+                            <ul>
+                            <div class="dropdown-menu m-auto ">
+                                <a href="{{ route('profile.show') }}" class="dropdown-item">تعديل الملف الشخصي</a>
+                                @auth
+                                    @if (Auth::user()->type  == 'ادمن')
+                                        <a href="{{ route('admin.medical.index') }}" class="dropdown-item">  الشخصي</a>
+                                    @elseif (Auth::user()->type  == 'عامل في المجال الطبي')    
+                                        <a href="{{ route('medical.article.index') }}" class="dropdown-item">  مقلاتي </a>
+
+                                    @endif
+
+                                @endauth
+                                <a href="detail.html" class="dropdown-item">Blog Detail</a>
+                            </div>
                         </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+
+                    @else
+                        {{-- the user is not logged in --}}
+                        <a href="{{ route('login')}}" class="btn btn-primary py-2 px-4 ms-3"> تسجيل الدخول </a>
+                        <a href="{{ route('register')}}" class="btn btn-primary py-2 px-4 ms-3">انشاء حساب</a>
+
+                    @endif
                 </div>
-                @if (Auth::check())
-                    {{-- the user is logged in --}}
-                    <div class="nav-item dropdown px-4 ms-3">
-                        <a href="#" class="nav-link dropdown-toggle m-auto" data-bs-toggle="dropdown">{{ Auth::user()->name}}</a>
-                        <ul>
-                        <div class="dropdown-menu m-auto ">
-                            <a href="{{ route('profile.show') }}" class="dropdown-item">تعديل الملف الشخصي</a>
-                            @auth
-                                @if (Auth::user()->type  == 'ادمن')
-                                    <a href="{{ route('admin.medical.index') }}" class="dropdown-item">  الشخصي</a>
-                                @elseif (Auth::user()->type  == 'عامل في المجال الطبي')    
-                                    <a href="{{ route('medical.article.index') }}" class="dropdown-item">  مقلاتي </a>
-
-                                @endif
-
-                            @endauth
-                            <a href="detail.html" class="dropdown-item">Blog Detail</a>
-                        </div>
-                    </div>
-
-                @else
-                    {{-- the user is not logged in --}}
-                    <a href="{{ route('login')}}" class="btn btn-primary py-2 px-4 ms-3"> تسجيل الدخول </a>
-                    <a href="{{ route('register')}}" class="btn btn-primary py-2 px-4 ms-3">انشاء حساب</a>
-
-                @endif
+               
             </div>
         </nav>

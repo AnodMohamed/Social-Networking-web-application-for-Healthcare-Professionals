@@ -91,14 +91,12 @@
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
 
-                                        
-
                                         {{-- حذف--}}
-                                        {{-- <a href="{{ route('admin.medical.reject',['user_id'=>$profile->id ]) }}" 
+                                        <a href="{{ route('medical.article.delete',['article_id'=>$article->id ]) }}" 
                                             class="btn btn-danger text-white"
                                             title="حذف">
-                                            <i class="bi bi-trash3"></i>
-                                        </a> --}}
+                                            <i class="bi bi-trash"></i>
+                                        </a>
 
                                         {{-- <i class="bi bi-trash3"></i> --}}
                                     </td>

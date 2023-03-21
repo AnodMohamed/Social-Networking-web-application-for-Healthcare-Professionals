@@ -52,6 +52,7 @@ Route::middleware(['verified','authmedicalpersonnel'])->group(function(){
     Route::get('/medical/article/index', [MedicalArticleController::class, 'index'])->name('medical.article.index');
     Route::get('/medical/article/edit/{article_id:id}', [MedicalArticleController::class, 'edit'])->name('medical.article.edit');
     Route::post('/medical/article/update/{article_id:id}', [MedicalArticleController::class, 'update'])->name('medical.article.update');
+    Route::get('/medical/article/delete/{article_id:id}', [MedicalArticleController::class, 'destroy'])->name('medical.article.delete');
 
 });
 
