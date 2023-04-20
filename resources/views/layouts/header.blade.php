@@ -50,45 +50,65 @@
     <!-- Spinner End -->
 
 
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-dark px-5 d-none d-lg-block">
-        <div class="row gx-0">
-            <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-                <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <small class="me-3 text-light"><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</small>
-                    <small class="me-3 text-light"><i class="fa fa-phone-alt me-2"></i>+012 345 6789</small>
-                    <small class="text-light"><i class="fa fa-envelope-open me-2"></i>info@example.com</small>
-                </div>
-            </div>
-            <div class="col-lg-4 text-center text-lg-end">
-                <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-twitter fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-instagram fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href=""><i class="fab fa-youtube fw-normal"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
 
     <!-- Navbar & Carousel Start -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
             <a href="index.html" class="navbar-brand p-0">
-                <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Startup</h1>
+                <h1 class="m-0">SNFHP</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
-                    <a href="service.html" class="nav-item nav-link">Services</a>
+                    <a href="{{ route('home') }}"  class="nav-item nav-link px-1 ms-3 ">الصفحة الرئيسية</a>
 
+                    <div class="nav-item dropdown px-1 ms-3 ">
+                        <a href="#" class="nav-link dropdown-toggle m-auto " data-bs-toggle="dropdown">الوظيفة</a>
+                        <ul>
+                            <div class="dropdown-menu m-auto  ">
+                                <a href="{{ route('public.medical.occupation',['occupation'=>'طبيب']) }}"  class="dropdown-item text-end">طبيب</a>
+                                <a href="{{ route('public.medical.occupation',['occupation'=>'مساعد طبيب']) }}"   class="dropdown-item text-end">مساعد طبيب</a>
+                                <a href="{{ route('public.medical.occupation',['occupation'=>'ممرض']) }}"  class="dropdown-item text-end">ممرض</a>
+                                <a href="{{ route('public.medical.occupation',['occupation'=>'اخرى']) }}"   class="dropdown-item text-end">اخرى</a>
+
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="nav-item dropdown px-1 ms-3 ">
+                        <a href="#" class="nav-link dropdown-toggle m-auto " data-bs-toggle="dropdown">التخصص</a>
+                        <ul>
+                            <div class="dropdown-menu m-auto scroll ">
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'التخدير']) }}">التخدير</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'طب القلب والأوعية الدموية']) }}"></i>طب القلب والأوعية الدموية</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'العناية المركزة']) }}">العناية المركزة</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'طب الطوارئ']) }}">طب الطوارئ</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'أمراض الغدد الصماء']) }}">أمراض الغدد الصماء</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'أمراض الجهاز الهضمي']) }}">أمراض الجهاز الهضمي</a>
+    
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'أمراض الدم']) }}">أمراض الدم</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'التغذية']) }}">التغذية</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'أمراض الكلى']) }}">أمراض الكلى</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'الأورام']) }}">الأورام</a>
+    
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'طب العيون']) }}">طب العيون</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'الأنف والأذن والحنجرة']) }}">الأنف والأذن والحنجرة </a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'الأمراض الصدرية']) }}">الأمراض الصدرية</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'طب الرعاية الأولية']) }}">طب الرعاية الأولية</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'طب الأطفال']) }}">طب الأطفال</a>
+    
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'الطب النفسي']) }}">الطب النفسي</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'جراحة العظام والروماتيزم']) }}">جراحة العظام والروماتيزم</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'الأشعة']) }}">الأشعة</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'الطب التناسلي']) }}">الطب التناسلي</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'جراحة']) }}">جراحة</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'جراحة المسالك البولية']) }}">جراحة المسالك البولية</a>
+                                <a   class="dropdown-item text-end" href="{{ route('public.medical.category',['category'=>'اخرى']) }}">اخرى</a>
+    
+                            </div>
+                        </ul>
+                    </div>
                     @if (Auth::check())
                         {{-- the user is logged in --}}
                         <div class="nav-item dropdown px-4 ms-3 ">
@@ -97,10 +117,12 @@
                             <div class="dropdown-menu m-auto  ">
                                 <a href="{{ route('profile.show') }}" class="dropdown-item text-end">تعديل الملف الشخصي</a>
                                 @if (Auth::user()->type  == 'ادمن')
+                                    <a href="{{ route('admin.dashboard') }}" class="dropdown-item text-end"> لوحة النحكم </a>
                                     <a href="{{ route('admin.medical.index') }}" class="dropdown-item text-end">  التحكم في العاملين في المجال الطبي</a>
                                     <a href="{{ route('admin.article.index') }}" class="dropdown-item text-end">  التحكم في المقالات</a>
 
                                 @elseif (Auth::user()->type  == 'عامل في المجال الطبي')    
+                                    <a href="{{ route('medical.edit') }}" class="dropdown-item text-end">   تعديل الملف التعريفي  </a>
                                     <a href="{{ route('medical.article.index') }}" class="dropdown-item text-end">  مقلاتي </a>
                                 @endif
                                 <form method="POST" action="{{ route('logout') }}">
@@ -112,6 +134,7 @@
                                         </a>
                                 </form>
                             </div>
+
                         </div>                   
                     @endif
                 </div>

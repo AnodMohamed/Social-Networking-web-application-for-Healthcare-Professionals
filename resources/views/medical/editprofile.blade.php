@@ -88,7 +88,7 @@
                             <select id="specialization" class="block mt-1 w-full form-control border-0 bg-light px-4" name="specialization" value="{{ $profile->specialization }}" required>
                                 <option value=""> اختار من الآتي</option>
                                 <option value="التخدير"  {{ $profile->specialization == 'التخدير' ? 'selected' : '' }}>التخدير</option>
-                                <option value=" طب القلب والأوعية الدموية" {{ $profile->specialization == 'طب القلب والأوعية الدموية' ? 'selected' : '' }}> طب القلب والأوعية الدموية</option>
+                                <option value="طب القلب والأوعية الدموية" {{ $profile->specialization == 'طب القلب والأوعية الدموية' ? 'selected' : '' }}> طب القلب والأوعية الدموية</option>
                                 <option value="العناية المركزة" {{ $profile->specialization == 'العناية المركزة' ? 'selected' : '' }}>العناية المركزة</option>
                                 <option value="طب الطوارئ" {{ $profile->specialization == 'طب الطوارئ' ? 'selected' : '' }}>طب الطوارئ</option>
                                 <option value="أمراض الغدد الصماء" {{ $profile->specialization == 'أمراض الغدد الصماء' ? 'selected' : '' }}>أمراض الغدد الصماء</option>
@@ -170,7 +170,7 @@
                             <iframe class="mt-2" src="{{asset('storage/uploads')}}/{{ $profile->license }}"
                                 style="width: 100%; height: 300px;"></iframe>
                             @else
-                                <p>null</p>
+                                <p>لا يوجد ملف pdf</p>
                             @endif
                         </div>
 
@@ -185,7 +185,7 @@
                             <iframe class="mt-2" src="{{asset('storage/uploads')}}/{{ $profile->certificate }}"
                                 style="width: 100%; height: 300px;"></iframe>
                             @else
-                                <p>null</p>
+                                <p>لا يوجد ملف pdf</p>
                             @endif
                         </div>
 

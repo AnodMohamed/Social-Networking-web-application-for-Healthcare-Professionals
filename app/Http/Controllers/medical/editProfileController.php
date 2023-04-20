@@ -29,7 +29,7 @@ class editProfileController extends Controller
             'certificate' => 'required|mimes:pdf',
         ]);
 
-        //
+        //update data
         $profile = medicalPersonProfile::where('user_id',Auth::user()->id)->first();
         $profile->bio = $data['bio'];
         $profile->occupation = $data['occupation'];

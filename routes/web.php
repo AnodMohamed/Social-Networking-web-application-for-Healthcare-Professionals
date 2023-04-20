@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Admin\AdminManageMedicalProfileController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\medical\editProfileController;
 use App\Http\Controllers\medical\MedicalArticleController;
 use App\Http\Controllers\public\PublicController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +23,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PublicController::class, 'home'])->name('home');
 Route::get('/public/medical/showprofile/{user_id:id}', [PublicController::class, 'showprofile'])->name('public.medical.showprofile');
+Route::get('/public/medical/category/{category:string}', [PublicController::class, 'category'])->name('public.medical.category');
+Route::get('/public/medical/occupation/{occupation:string}', [PublicController::class, 'occupation'])->name('public.medical.occupation');
 Route::get('/public/article/showarticle/{article_id:id}', [PublicController::class, 'showarticle'])->name('public.article.showarticle');
+
+
+//comment
+Route::post('/comments/store', [CommentController::class, 'store'])->name('comments.store');
+Route::get('/comments/edit/{id}', [CommentController::class, 'edit'])->name('comments.edit');
+Route::post('/comments/update/{id}', [CommentController::class, 'update'])->name('comments.update');
+Route::get('/comments/delete/{id}', [CommentController::class, 'delete'])->name('comments.delete');
+Route::post('/like', [CommentController::class, 'like'])->name('like');
+
 
 //admin
 Route::middleware(['verified','authadmin'])->group(function(){
+    //dashboard
+    Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     //medical profiles
     Route::get('admin/medical/index', [AdminManageMedicalProfileController::class, 'index'])->name('admin.medical.index');
@@ -38,10 +54,7 @@ Route::middleware(['verified','authadmin'])->group(function(){
 
 });
 
-//user
-Route::middleware(['verified','authuser'])->group(function(){
 
-});
 
 //medical personnel
 Route::middleware(['verified','authmedicalpersonnel'])->group(function(){
@@ -61,12 +74,3 @@ Route::middleware(['verified','authmedicalpersonnel'])->group(function(){
 });
 
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});

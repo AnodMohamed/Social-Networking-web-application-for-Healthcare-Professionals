@@ -82,62 +82,78 @@
                             <h5 class="mb-3"><i class="fa fa-check text-primary me-3"> سنوات الخبرة:</i>{{ $medical_profile->experience }}</h5>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
-                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
-                            <i class="fa fa-phone-alt text-white"></i>
-                        </div>
-                    </div>
 
-                     {{-- بطاقة الهوية --}}
-                    @if (Auth::user()->type == "ادمن" || Auth::user()->id == $user->id)
-
-                        <div class="d-blok align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
-                            <div class=" d-blok align-items-center justify-content-center rounded" >
-                                <h4> بطاقة الهوية </h4>
-                                @if(isset($medical_profile->Identification_card))
-                                    <iframe class="mt-2" src="{{asset('storage/uploads')}}/{{ $medical_profile->Identification_card }}"
-                                    style="width: 100%; height: 300px;"></iframe>
-                                @else
-                                    <p>لا يوجد ملف pdf</p>
-                                @endif
+                    @auth
+                        @if (Auth::user()->id != $user->id)
+                            <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
+                                <div class="bg-primary d-flex align-items-center justify-content-center rounded " style="width: 60px; height: 60px;">
+                                    <a  class="px-2"
+                                        href="{{ str_replace('?', '/', route('chatify', $user->id)) }}" >
+                                        <i class="bi bi-chat-fill text-white" ></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+    
+                        @endif
+                    @endauth
+                    
+                    
 
-                    @endif
+                    @auth
+                         {{-- بطاقة الهوية --}}
+                        @if (Auth::user()->type == "ادمن" || Auth::user()->id == $user->id)
 
-                    {{-- الرخصة--}}
-                    @if (Auth::user()->type == "ادمن" || Auth::user()->id == $user->id)
-
-                        <div class="d-blok align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
-                            <div class=" d-blok align-items-center justify-content-center rounded" >
-                                <h4>الرخصة</h4>
-                                @if(isset($medical_profile->license))
-                                    <iframe class="mt-2" src="{{asset('storage/uploads')}}/{{ $medical_profile->license }}"
-                                    style="width: 100%; height: 300px;"></iframe>
-                                @else
-                                    <p>لا يوجد ملف pdf</p>
-                                @endif
+                            <div class="d-blok align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
+                                <div class=" d-blok align-items-center justify-content-center rounded" >
+                                    <h4> بطاقة الهوية </h4>
+                                    @if(isset($medical_profile->Identification_card))
+                                        <iframe class="mt-2" src="{{asset('storage/uploads')}}/{{ $medical_profile->Identification_card }}"
+                                        style="width: 100%; height: 300px;"></iframe>
+                                    @else
+                                        <p>لا يوجد ملف pdf</p>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                    @endif
+                        @endif
 
-                    {{-- الشهادة --}}
-                    @if (Auth::user()->type == "ادمن" || Auth::user()->id == $user->id)
+                        {{-- الرخصة--}}
+                        @if (Auth::user()->type == "ادمن" || Auth::user()->id == $user->id)
 
-                        <div class="d-blok align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
-                            <div class=" d-blok align-items-center justify-content-center rounded" >
-                                <h4>الشهادة</h4>
-                                @if(isset($medical_profile->certificate))
-                                    <iframe class="mt-2" src="{{asset('storage/uploads')}}/{{ $medical_profile->certificate }}"
-                                    style="width: 100%; height: 300px;"></iframe>
-                                @else
-                                    <p>لا يوجد ملف pdf</p>
-                                @endif
+                            <div class="d-blok align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
+                                <div class=" d-blok align-items-center justify-content-center rounded" >
+                                    <h4>الرخصة</h4>
+                                    @if(isset($medical_profile->license))
+                                        <iframe class="mt-2" src="{{asset('storage/uploads')}}/{{ $medical_profile->license }}"
+                                        style="width: 100%; height: 300px;"></iframe>
+                                    @else
+                                        <p>لا يوجد ملف pdf</p>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                    @endif
+                        @endif
+
+                         {{-- الشهادة --}}
+                        @if (Auth::user()->type == "ادمن" || Auth::user()->id == $user->id)
+
+                            <div class="d-blok align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
+                                <div class=" d-blok align-items-center justify-content-center rounded" >
+                                    <h4>الشهادة</h4>
+                                    @if(isset($medical_profile->certificate))
+                                        <iframe class="mt-2" src="{{asset('storage/uploads')}}/{{ $medical_profile->certificate }}"
+                                        style="width: 100%; height: 300px;"></iframe>
+                                    @else
+                                        <p>لا يوجد ملف pdf</p>
+                                    @endif
+                                </div>
+                            </div>
+
+                        @endif
+                    @endauth
+
+
+                   
                 </div>
 
                 {{-- الصور التعريفية --}}
@@ -153,9 +169,37 @@
                         {{-- <img class="position-absolute w-100 h-100 rounded wow zoomIn"  src="img/about.jpg" style="object-fit: cover;"> --}}
                     </div>
                 </div>
-              
+
             </div>
         </div>
+        
+<!-- Blog Start -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+            <h5 class="fw-bold text-primary text-uppercase"> المقالات</h5>
+        </div>
+        <div class="row g-5">
+            @foreach ($Articles as $article)
+                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+                    <div class="blog-item bg-light rounded overflow-hidden">
+                        <div class="blog-img position-relative overflow-hidden">
+                            <img class="img-fluid" src="{{asset('storage/images')}}/{{$article->image}}" style="width:100%; height:300px">
+                        </div>
+                        <div class="p-4">
+                             
+                            <h4 class="mb-3">{{ $article->title}}</h4>
+                            <a class="text-uppercase" href="{{ route('public.article.showarticle',['article_id'=>$article->id ]) }}" >قراءة المزيد  <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+         
+    
+        </div>
+    </div>
+    </div>
+    <!-- Blog Start -->
     </div>
 </div>
 

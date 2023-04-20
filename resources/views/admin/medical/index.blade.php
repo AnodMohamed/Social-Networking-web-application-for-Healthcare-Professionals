@@ -152,7 +152,7 @@
     <!-- Contact End -->
 @push('javascript')
 <script>
-let table = new DataTable('#myTable');
+    let table = new DataTable('#myTable');
 </script>
     
 @endpush

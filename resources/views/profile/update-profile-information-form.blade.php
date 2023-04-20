@@ -25,8 +25,7 @@
                             " />
 
                 <x-label for="photo" value="{{ __('Photo') }}" />
-
-                <!-- Current Profile Photo -->
+               <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
                     @if (Auth::user()->profile_photo_path == Null)
                         <img src="{{ asset('defult.jpg') }}"  class="rounded-full h-20 w-20 object-cover">
@@ -34,8 +33,6 @@
                         <img src="{{asset('storage')}}/{{Auth::user()->profile_photo_path}}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
                     @endif                
                 </div>
-
-                <!-- New Profile Photo Preview -->
                 <div class="mt-2" x-show="photoPreview" style="display: none;">
                     <span class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
                           x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
@@ -69,7 +66,7 @@
             <x-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" autocomplete="username" />
             <x-input-error for="email" class="mt-2" />
 
-            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
+            {{-- @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2">
                     {{ __('لم يتم التحقق من عنوان بريدك الإلكتروني.') }}
 
@@ -83,7 +80,7 @@
                         {{ __('تم إرسال رابط تحقق جديد إلى عنوان بريدك الإلكتروني.') }}
                     </p>
                 @endif
-            @endif
+            @endif --}}
         </div>
     </x-slot>
 

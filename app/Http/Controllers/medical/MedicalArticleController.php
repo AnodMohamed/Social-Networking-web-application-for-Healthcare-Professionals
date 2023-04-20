@@ -30,9 +30,7 @@ class MedicalArticleController extends Controller
         $data = $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'image' => 'required|image|max:2048
-            |dimensions:min_width=100,min_height=100,max_width=4096,max_height=4096
-            |mimetypes:image/jpeg,image/png,image/gif',
+            'image' => 'required|max:2048|mimes:png,jpg',
         ]);
         
           //
@@ -62,7 +60,7 @@ class MedicalArticleController extends Controller
 
     public function edit($article_id){
         $medical_profile = medicalPersonProfile::where('user_id', Auth::user()->id)->first();
-        $article =Article::where('user_id',$article_id)->first();
+        $article =Article::where('id',$article_id)->first();
         return view('medical.article.edit')->with(compact('article','medical_profile'));
     }
 
@@ -71,13 +69,11 @@ class MedicalArticleController extends Controller
         $data = $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'image' => 'nullable|image|max:2048
-            |dimensions:min_width=100,min_height=100,max_width=4096,max_height=4096
-            |mimetypes:image/jpeg,image/png,image/gif',
+            'image' => 'nullable|max:2048|mimes:png,jpg',
+
         ]);
 
         $article =Article::find($article_id);
-        $article->user_id = Auth::user()->id;
         $article->title = $data['title'];
         $article->content = $data['content'];
 
